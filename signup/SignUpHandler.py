@@ -1,11 +1,10 @@
 __author__ = 'sdpatro'
 from tornado.web import RequestHandler
 
-
-class LoginHandler(RequestHandler):
+class SignUpHandler(RequestHandler):
     def get(self):
-        self.render("Login.html", title="Log in")
+        self.render("SignUp.html", title="Sign up")
 
     def post(self):
         self.set_header("Content-Type", "text/plain")
-        self.write("You wrote " + self.get_body_argument("message"))
+        self.write("You wrote " + self.reverse_url("db"))
