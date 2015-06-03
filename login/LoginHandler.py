@@ -20,4 +20,5 @@ class LoginHandler(RequestHandler):
                 if user.password != password:
                     self.write("Wrong password, <a href=%s>try again.</a>" % "/login")
                 else:
-                    self.redirect("/landing")
+                    self.set_secure_cookie("user", self.get_argument("username"))
+                    self.redirect(self.reverse_url("landing"))
