@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Intro-Tornado</title>
+</head>
+<body>
+    {% for value in items %}
+        <h2>Logged in as {{ escape(value.userName) }}</h2>
+        {% break %}
+    {% end %}
+    <h3>Your product items</h3>
+    {% for value in items %}
+    <li>{{ value.pname }} || {{ value.pid }}</li>
+    <br>
+    {% end %}
+</body>
+</html>
