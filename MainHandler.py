@@ -1,13 +1,13 @@
 __author__ = 'sdpatro'
 from tornado.ioloop import IOLoop
 from tornado.web import RequestHandler, Application, url
+from tornado.httpserver import HTTPServer
 
 from signup import SignUpHandler
 from login import LoginHandler
 from DB import DBHandler
 from landing import LandingHandler
 
-import torndb
 import random
 
 
@@ -34,5 +34,7 @@ if __name__ == "__main__":
         url(r"/landing", LandingHandler.LandingHandler, name="landing"),
         url(r"/db", DBHandler.DBHandler, name="db")], cookie_secret=str(random.randrange(0, 10000000)))
 
-    app.listen(8888)
+    server = HTTPServer(app, xheaders=True)
+    server.bind(8888)
+    server.start(0)
     IOLoop.current().start()
